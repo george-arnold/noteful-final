@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Route, Link} from 'react-router-dom';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import NoteListNav from '../NoteListNav/NoteListNav';
 import NotePageNav from '../NotePageNav/NotePageNav';
 import NoteListMain from '../NoteListMain/NoteListMain';
@@ -8,6 +7,7 @@ import NotePageMain from '../NotePageMain/NotePageMain';
 import NoteContext from '../NoteContext';
 import config from '../config';
 import './App.css';
+import AddFolder from '../AddFolder/AddFolder'
 
 class App extends Component {
     state = {
@@ -93,6 +93,7 @@ class App extends Component {
                         </h1>
                     </header>
                     <main className="App__main">{this.renderMainRoutes()}</main>
+                    <Route path= "/add-folder" component={AddFolder} />
                 </div>
             </NoteContext.Provider>
         );
