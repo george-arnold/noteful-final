@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import CircleButton from '../CircleButton/CircleButton'
 import NoteContext from '../NoteContext'
 import { findNote, findFolder } from '../notes-helpers'
@@ -32,7 +31,7 @@ export default class NotePageNav extends Component {
         onClick={() => this.props.history.goBack()}
         className='NotePageNav__back-button'
       >
-        <FontAwesomeIcon icon='chevron-left' />
+
         <br />
         Back
       </CircleButton>
