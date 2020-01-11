@@ -93,7 +93,6 @@ class App extends Component {
                         </h1>
                     </header>
                     <main className="App__main">{this.renderMainRoutes()}</main>
-                    <Route path= "/add-folder" component={AddFolder} />
                 </div>
             </NoteContext.Provider>
         );

@@ -39,7 +39,7 @@ export default class NoteListMain extends Component {
             className='NoteListMain__add-note-button'
           >
             <br />
-            Note
+            Add Note
           </CircleButton>
         </div>
       </section>

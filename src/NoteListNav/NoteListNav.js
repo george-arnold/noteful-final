@@ -44,7 +44,7 @@ class NoteListNav extends Component {
           className='NoteListNav__add-folder-button'
         >
           <br />
-          Folder
+          Add Folder
         </CircleButton>
       </div>
     </div>
