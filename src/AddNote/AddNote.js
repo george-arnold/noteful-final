@@ -10,11 +10,9 @@ class AddNote extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      toApi: {
-        noteName: "",
-        noteContent: "",
-        toThisFolder: "b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1"
-      },
+        noteName: {value: ""}, 
+        noteContent: {value: ""}, 
+        toThisFolder: {value: "b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1"}, 
       touched: false
     };
   }
@@ -24,16 +22,16 @@ class AddNote extends Component {
       this.setState({
         touched: false
       });
-    } else
-      this.setState({
-        toApi: { noteName: e },
+    }  this.setState({
+        noteName: {value: e },
         touched: true
       });
   }
 
   validateName() {
     //trim will get rid of any whitespace that the user enters
-    const name = this.state.toApi.noteName.trim();
+    const name = this.state.noteName.value.trim();
+   
     if (name.length === 0) {
       return "Please enter a Name";
     }
@@ -41,24 +39,24 @@ class AddNote extends Component {
 
   handleContentChange(e) {
     this.setState({
-      toApi: { noteContent: e }
+      noteContent: {value: e }
     });
   }
 
   handleFolderChange(e) {
     this.setState({
-      toApi: { toThisFolder: e }
+      toThisFolder: {value: e }
     });
   }
 
   handleSubmit(e) {
     e.preventDefault();
     console.log("State at handle is", this.state);
-    const { noteName, noteContent, toThisFolder } = this.state.toApi;
+    const { noteName, noteContent, toThisFolder } = this.state;
     const newNote = {
-      name: noteName,
-      content: noteContent,
-      folderId: toThisFolder
+      name: noteName.value,
+      content: noteContent.value,
+      folderId: toThisFolder.value
     };
     console.log(newNote);
 

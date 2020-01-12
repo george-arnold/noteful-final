@@ -5,6 +5,7 @@ import CircleButton from '../CircleButton/CircleButton'
 import NoteContext from '../NoteContext'
 import { getNotesForFolder } from '../notes-helpers'
 import './NoteListMain.css'
+import ErrorBoundary from '../ErrorBoundary'
 
 export default class NoteListMain extends Component {
   static defaultProps = {
