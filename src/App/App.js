@@ -42,6 +42,11 @@ class App extends Component {
             folders: [...this.state.folders, folder]
         })
     }
+    handleNewNote = (note) => {
+        this.setState({
+            notes: [...this.state.notes, note ]
+        })
+    }
 
     handleDeleteNote = noteId => {
         this.setState({
@@ -93,6 +98,7 @@ class App extends Component {
             folders: this.state.folders,
             deleteNote: this.handleDeleteNote,
             addNewFolder: this.handleNewFolder,
+            addNewNote: this.handleNewNote
         };
         return (
             <NoteContext.Provider value={value}>

@@ -34,11 +34,11 @@ class AddFolder extends Component {
         "Content-type": "application/json"
       },
       body: JSON.stringify(newFolder),
-    }).then (function(response) {
-        if(!response.ok){
-            return;
-        }
-        return response.json();
+      }).then (function(response) {
+          if(!response.ok){
+              return;
+          }
+          return response.json();
 
     }).then( newFolder => {
       this.context.addNewFolder(newFolder);
