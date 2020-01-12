@@ -5,7 +5,7 @@ class AddFolder extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      folderName: ''
+      folderName: { value:''}
     }
   }
   // submit the name from the input to the state
@@ -13,15 +13,17 @@ class AddFolder extends Component {
     this.setState({
       folderName: {value: e}
     })
-    
   }
+  
   
   handleSubmit(e) {
     e.preventDefault();
-    const {folderName} = this.state;
+    
+    const {value} = this.state.folderName;
+    console.log('value', value);
     fetch(`${config.API_ENDPOINT}/folders`, {
       method: 'post',
-      body: JSON.stringify(folderName),
+      body: JSON.stringify(value),
     }).then (function(response) {
         if(!response.ok){
             return;
