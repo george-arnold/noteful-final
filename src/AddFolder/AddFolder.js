@@ -30,7 +30,7 @@ class AddFolder extends Component {
     fetch(`${config.API_ENDPOINT}/folders`, {
       method: 'post',
       headers: {
-        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+        "Content-type": "application/json"
       },
       body: JSON.stringify(addFolder),
     }).then (function(response) {
