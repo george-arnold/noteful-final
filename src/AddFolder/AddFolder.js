@@ -18,12 +18,13 @@ class AddFolder extends Component {
   
   handleSubmit(e) {
     e.preventDefault();
+    const {folderName} = this.state;
     fetch(`${config.API_ENDPOINT}/folders`, {
       method: 'post',
-      body: JSON.stringify(e),
+      body: JSON.stringify(folderName),
 
     }).then (function(response) {
-      return response.json();
+      console.log (response.json());
     }).then(function(data) {
       console.log(data);
     })
