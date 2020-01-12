@@ -32,7 +32,7 @@ export default class NoteListMain extends Component {
           )}
         </ul>
         <div className='NoteListMain__button-container'>
-          <CircleButton
+        <CircleButton
             tag={Link}
             to='/add-note'
             type='button'

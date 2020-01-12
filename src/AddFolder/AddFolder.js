@@ -1,5 +1,7 @@
 import React, {Component} from 'react'; 
 import config from '../config';
+import NoteContext from '../NoteContext';
+import './AddFolder.css'
 
 class AddFolder extends Component {
   constructor(props) {
@@ -8,6 +10,7 @@ class AddFolder extends Component {
       folderName: ''
     }
   }
+  static contextType = NoteContext;
   // submit the name from the input to the state
   handleChange(e) {
     this.setState({
@@ -18,53 +21,44 @@ class AddFolder extends Component {
   
   handleSubmit(e) {
     e.preventDefault();
-    
     const {folderName} = this.state;
-  
-    const addFolder = {
+    const newFolder = {
       name: folderName
     }
     console.log('folderName is', folderName );
-    console.log('addfolder object is', addFolder);
+    console.log('addfolder object is', newFolder);
 
     fetch(`${config.API_ENDPOINT}/folders`, {
       method: 'post',
       headers: {
         "Content-type": "application/json"
       },
-      body: JSON.stringify(addFolder),
+      body: JSON.stringify(newFolder),
     }).then (function(response) {
         if(!response.ok){
             return;
         }
         return response.json();
 
-    }).then(function(data) {
-      console.log(data);
+    }).then( newFolder => {
+      this.context.addNewFolder(newFolder);
+      this.props.history.push(`/`);
+
     })
-  //   fetch(`${config.API_ENDPOINT}/folders`, {
-  //     method: 'post',
 
-  //     body: JSON.stringify(folderName),
-
-  //   }).then(
-  //   function(response) {
-  //     response.json().then(function(data) {
-  //       console.log(data);
-  //   })}
-  //   )
-  //   .catch(function (error) {
-  //     console.log('Request failed', error);
-  //   })
-  // }
+    .catch(function (error) {
+      console.log('Request failed', error);
+    })
   }
+
+  
 
   render() {
     return (
     <form onSubmit ={e => this.handleSubmit(e)} >
-      <label htmlFor='folder-name'>Folder Name</label>
+      <label htmlFor='folder-name' className = 'label'>Folder Name</label>
       <input id='folder-name' name= 'folder-name' type= 'text' onChange = {e => this.handleChange(e.target.value)} ></input>
-      <input type= 'submit' value= 'Submit'></input>
+      <input className= 'Submit' type='submit' value = "Submit"></input>
     </form>
     )
   }

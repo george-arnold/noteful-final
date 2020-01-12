@@ -13,6 +13,7 @@ class AddNote extends Component {
 {/* should populate a list of existing folders */}
 <select name= 'folder'></select>
 
+<input type= "submit" value ='Submit'></input>
       </form>
     )
   }
