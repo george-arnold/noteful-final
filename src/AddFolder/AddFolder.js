@@ -26,9 +26,12 @@ class AddFolder extends Component {
     }
     console.log('folderName is', folderName );
     console.log('addfolder object is', addFolder);
-    
+
     fetch(`${config.API_ENDPOINT}/folders`, {
       method: 'post',
+      headers: {
+        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+      },
       body: JSON.stringify(addFolder),
     }).then (function(response) {
         if(!response.ok){
@@ -41,9 +44,7 @@ class AddFolder extends Component {
     })
   //   fetch(`${config.API_ENDPOINT}/folders`, {
   //     method: 'post',
-  //     headers: {
-  //       "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
-  //     },
+
   //     body: JSON.stringify(folderName),
 
   //   }).then(
