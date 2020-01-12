@@ -21,18 +21,33 @@ class AddFolder extends Component {
     const {folderName} = this.state;
     fetch(`${config.API_ENDPOINT}/folders`, {
       method: 'post',
-      headers: {
-        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
-      },
       body: JSON.stringify(folderName),
-
-    }) .then(json)
-    .then(function (data) {
-      console.log('Request succeeded with JSON response', data);
+    }).then (function(response) {
+        if(!response.ok){
+            return;
+        }
+        return response.json();
+      console.log ();
+    }).then(function(data) {
+      console.log(data);
     })
-    .catch(function (error) {
-      console.log('Request failed', error);
-    });
+  //   fetch(`${config.API_ENDPOINT}/folders`, {
+  //     method: 'post',
+  //     headers: {
+  //       "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+  //     },
+  //     body: JSON.stringify(folderName),
+
+  //   }).then(
+  //   function(response) {
+  //     response.json().then(function(data) {
+  //       console.log(data);
+  //   })}
+  //   )
+  //   .catch(function (error) {
+  //     console.log('Request failed', error);
+  //   })
+  // }
   }
 
   render() {
