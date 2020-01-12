@@ -1,4 +1,5 @@
 import React, {Component} from 'react'; 
+import config from '../config';
 
 class AddFolder extends Component {
   constructor(props) {
@@ -12,18 +13,28 @@ class AddFolder extends Component {
     this.setState({
       folderName: {value: e}
     })
-    console.log(this.state.folderName);
+    
   }
   
   handleSubmit(e) {
     e.preventDefault();
-    // submit the name of the folder from state to the POST /folders endpoint
+    fetch(`${config.API_ENDPOINT}/folders`, {
+      method: 'post',
+      body: JSON.stringify(e),
+
+    }).then (function(response) {
+      return response.json();
+    }).then(function(data) {
+      console.log(data);
+    })
   }
+
   render() {
     return (
-    <form onSubmit ={e => this.handleSubmit} >
+    <form onSubmit ={e => this.handleSubmit(e)} >
       <label htmlFor='folder-name'>Folder Name</label>
       <input id='folder-name' name= 'folder-name' type= 'text' onChange = {e => this.handleChange(e.target.value)} ></input>
+      <input type= 'submit' value= 'Submit'></input>
     </form>
     )
   }

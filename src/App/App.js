@@ -56,6 +56,7 @@ class App extends Component {
                 <Route path="/note/:noteId" component={NotePageNav} />
                 <Route path="/add-folder" component={NotePageNav} />
                 <Route path="/add-note" component={NotePageNav} />
+                
             </>
         );
     }
@@ -72,6 +73,8 @@ class App extends Component {
                     />
                 ))}
                 <Route path="/note/:noteId" component={NotePageMain} />
+                <Route path = "/add-folder" component= {AddFolder} />
+               
             </>
         );
     }
@@ -93,6 +96,7 @@ class App extends Component {
                         </h1>
                     </header>
                     <main className="App__main">{this.renderMainRoutes()}</main>
+                    
                 </div>
             </NoteContext.Provider>
         );
