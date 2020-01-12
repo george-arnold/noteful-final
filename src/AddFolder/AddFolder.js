@@ -20,10 +20,13 @@ class AddFolder extends Component {
     e.preventDefault();
     
     const {folderName} = this.state;
+    const addFolder = {
+      name: folderName
+    }
     console.log('folderName is', folderName );
     fetch(`${config.API_ENDPOINT}/folders`, {
       method: 'post',
-      body: JSON.stringify(folderName),
+      body: JSON.stringify(addFolder),
     }).then (function(response) {
         if(!response.ok){
             return;
