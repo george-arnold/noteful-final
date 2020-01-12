@@ -20,7 +20,9 @@ export default class NoteListMain extends Component {
     const notesForFolder = getNotesForFolder(notes, folderId)
     return (
       <section className='NoteListMain'>
+      <ErrorBoundary>
         <ul>
+          
           {notesForFolder.map(note =>
             <li key={note.id}>
               <Note
@@ -31,6 +33,7 @@ export default class NoteListMain extends Component {
             </li>
           )}
         </ul>
+       </ErrorBoundary>
         <div className='NoteListMain__button-container'>
         <CircleButton
             tag={Link}
