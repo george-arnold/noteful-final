@@ -77,7 +77,7 @@ class AddNote extends Component {
           }
           return response.json;
         }).then(newNote => {
-          console.log('note leave AddNote', newNote);
+          console.log('.then newNote looks like this:', newNote);
           this.context.addNewNote(newNote);
           this.props.history.push(`/`);
         })
@@ -95,7 +95,7 @@ class AddNote extends Component {
       </option>
     ));
     return (
-      <form onSubmit={ e =>this.handleSubmit(e)}>
+      <form onSubmit={this.handleSubmit}>
         {/* Input for name of note */}
         <div className="Labels">
           <label htmlFor="name"> Name of Note </label>
