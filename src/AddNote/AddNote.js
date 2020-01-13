@@ -59,7 +59,7 @@ class AddNote extends Component {
       content: noteContent.value,
       folderId: toThisFolder.value
     };
-    console.log(newNote);
+  
 
     if (this.state.touched) {
       fetch(`${config.API_ENDPOINT}/notes`, {
@@ -76,8 +76,8 @@ class AddNote extends Component {
           return response.json;
         }).then(newNote => {
           console.log('note leave AddNote', newNote);
-          this.context.addNewNote(newNote);
-          this.props.history.push(`/`);
+          // this.context.addNewNote(newNote);
+          // this.props.history.push(`/`);
         })
         .catch(function(error) {
           console.log("Request failed", error);
