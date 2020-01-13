@@ -5,6 +5,12 @@ import config from "../config";
 import ValidationError from "../ValidationError";
 
 class AddNote extends Component {
+  static defaultProps = {
+    history: {
+      push: () => {}
+    }
+  }
+
   static contextType = NoteContext;
 
   constructor(props) {
@@ -52,7 +58,7 @@ class AddNote extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log("State at handle is", this.state);
+    console.log('this is e for submit',e);
     const { noteName, noteContent, toThisFolder } = this.state;
     const newNote = {
       name: noteName.value,
@@ -93,7 +99,7 @@ class AddNote extends Component {
       </option>
     ));
     return (
-      <form onSubmit={e => this.handleSubmit(e)}>
+      <form onSubmit={this.handleSubmit}>
         {/* Input for name of note */}
         <div className="Labels">
           <label htmlFor="name"> Name of Note </label>

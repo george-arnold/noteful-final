@@ -10,6 +10,11 @@ class AddFolder extends Component {
       folderName: ''
     }
   }
+  static defaultProps = {
+    history: {
+      push: () => { }
+    },
+  }
   static contextType = NoteContext;
   // submit the name from the input to the state
   handleChange(e) {
@@ -55,7 +60,7 @@ class AddFolder extends Component {
 
   render() {
     return (
-    <form onSubmit ={e => this.handleSubmit(e)} >
+    <form onSubmit ={this.handleSubmit} >
       <label htmlFor='folder-name' className = 'label'>Folder Name</label>
       <input id='folder-name' name= 'folder-name' type= 'text' onChange = {e => this.handleChange(e.target.value)} ></input>
       <input className= 'Submit' type='submit' value = "Submit"></input>
