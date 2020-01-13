@@ -18,11 +18,12 @@ class AddNote extends Component {
   }
 
   handleNameChange(e) {
-    if (e.length === 0) {
+    console.log(e);
+    if (e.length < 1) {
       this.setState({
         touched: false
       });
-    }  this.setState({
+    } else this.setState({
         noteName: {value: e },
         touched: true
       });
