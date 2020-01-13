@@ -5,18 +5,14 @@ import config from "../config";
 import ValidationError from "../ValidationError";
 
 class AddNote extends Component {
-  static defaultProps = {
-    history: {
-      push: () => {}
-    }
-  }
+
 
   static contextType = NoteContext;
 
   constructor(props) {
     super(props);
     this.state = {
-        noteName: {value: ""}, 
+        noteName: {value: "Folder Name"}, 
         noteContent: {value: ""}, 
         toThisFolder: {value: "b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1"}, 
       touched: false
@@ -56,7 +52,7 @@ class AddNote extends Component {
     });
   }
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
     console.log('this is e for submit',e);
     const { noteName, noteContent, toThisFolder } = this.state;
@@ -82,8 +78,8 @@ class AddNote extends Component {
           return response.json;
         }).then(newNote => {
           console.log('note leave AddNote', newNote);
-          // this.context.addNewNote(newNote);
-          // this.props.history.push(`/`);
+          this.context.addNewNote(newNote);
+          this.props.history.push(`/`);
         })
         .catch(function(error) {
           console.log("Request failed", error);
@@ -99,7 +95,7 @@ class AddNote extends Component {
       </option>
     ));
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={ e =>this.handleSubmit(e)}>
         {/* Input for name of note */}
         <div className="Labels">
           <label htmlFor="name"> Name of Note </label>
