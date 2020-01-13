@@ -74,9 +74,8 @@ class AddNote extends Component {
             return;
           }
           return response.json;
-        })
-        .then(newNote => {
-          console.log();
+        }).then(newNote => {
+          console.log('note leave AddNote', newNote);
           this.context.addNewNote(newNote);
           this.props.history.push(`/`);
         })

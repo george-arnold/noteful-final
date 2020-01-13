@@ -43,10 +43,13 @@ class App extends Component {
             folders: [...this.state.folders, folder]
         })
     }
+
     handleNewNote = (note) => {
+        console.log('note given to state', note);
         this.setState({
             notes: [...this.state.notes, note ]
         })
+        console.log('state after note', this.state)
     }
 
     handleDeleteNote = noteId => {
