@@ -19,3 +19,7 @@ export default function Note(props) {
     </div>
   )
 }
+Note.propTypes = {
+  id: PropTypes.string.isRequired, 
+  name: PropTypes.string.isRequired
+}

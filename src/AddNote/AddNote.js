@@ -75,7 +75,7 @@ class AddNote extends Component {
           if (!response.ok) {
             return;
           }
-          return response.json;
+          return response.json();
         }).then(newNote => {
           console.log('.then newNote looks like this:', newNote);
           this.context.addNewNote(newNote);
