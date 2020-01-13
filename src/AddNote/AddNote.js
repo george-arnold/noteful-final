@@ -69,7 +69,7 @@ class AddNote extends Component {
         },
         body: JSON.stringify(newNote)
       })
-        .then(function(response) {
+        .then(function json(response) {
           if (!response.ok) {
             return;
           }
