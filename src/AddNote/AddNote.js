@@ -5,89 +5,78 @@ import config from "../config";
 import ValidationError from "../ValidationError";
 
 class AddNote extends Component {
-
-
   static contextType = NoteContext;
 
   constructor(props) {
     super(props);
     this.state = {
-        noteName: {value: "Folder Name"}, 
-        noteContent: {value: ""}, 
-        toThisFolder: {value: "b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1"}, 
-      touched: false
+      noteName: "",
+      noteContent: "",
+      folderId: "b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1"
     };
   }
 
-  handleNameChange(e) {
-    console.log(e);
-    if (e.length < 1) {
-      this.setState({
-        touched: false
-      });
-    } else this.setState({
-        noteName: {value: e },
-        touched: true
-      });
+  handleNameChange(name) {
+    this.setState({
+      noteName: name
+    });
   }
 
   validateName() {
     //trim will get rid of any whitespace that the user enters
     const name = this.state.noteName.value.trim();
-   
+
     if (name.length === 0) {
       return "Please enter a Name";
     }
   }
 
-  handleContentChange(e) {
+  handleContentChange(content) {
     this.setState({
-      noteContent: {value: e }
+      noteContent: content
     });
   }
 
-  handleFolderChange(e) {
+  handleFolderChange(folderId) {
     this.setState({
-      toThisFolder: {value: e }
+      folderId
     });
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('this is e for submit',e);
-    const { noteName, noteContent, toThisFolder } = this.state;
+  handleSubmit = event => {
+    event.preventDefault();
+    const { noteName, noteContent, folderId } = this.state;
     const newNote = {
-      name: noteName.value,
-      content: noteContent.value,
-      folderId: toThisFolder.value
+      name: noteName,
+      content: noteContent,
+      folderId
     };
-  
 
-    if (this.state.touched) {
-      fetch(`${config.API_ENDPOINT}/notes`, {
-        method: "post",
-        headers: {
-          "Content-type": "application/json"
-        },
-        body: JSON.stringify(newNote)
+    fetch(`${config.API_ENDPOINT}/notes`, {
+      method: "post",
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify(newNote)
+    })
+      .then(function json(response) {
+        if (!response.ok) {
+          return;
+        }
+        return response.json();
       })
-        .then(function json(response) {
-          if (!response.ok) {
-            return;
-          }
-          return response.json();
-        }).then(newNote => {
-          console.log('.then newNote looks like this:', newNote);
-          this.context.addNewNote(newNote);
-          this.props.history.push(`/`);
-        })
-        .catch(function(error) {
-          console.log("Request failed", error);
-        });
-    }
-  }
+      .then(newNote => {
+        this.context.addNewNote(newNote);
+        this.props.history.push(`/`);
+      })
+      .catch(function(error) {
+        console.log("Request failed", error);
+      });
+  };
 
   render() {
+    const isValid =
+      this.state.noteName.length > 0 && this.state.noteContent.length > 0;
     const options = this.context.folders.map(folder => (
       <option id={folder.id} key={folder.id} value={folder.id}>
         {" "}
@@ -103,7 +92,7 @@ class AddNote extends Component {
             name="name"
             onChange={e => this.handleNameChange(e.target.value)}
           ></input>
-          {this.state.touched && (
+          {this.state.valid && (
             <ValidationError message={this.validateName()} />
           )}
         </div>
@@ -125,11 +114,7 @@ class AddNote extends Component {
             {options}
           </select>
         </div>
-        <input
-          type="submit"
-          value="Submit"
-          disabled={!this.state.touched}
-        ></input>
+        <input type="submit" value="Submit" disabled={!isValid}></input>
       </form>
     );
   }

@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 // VE css file has className error color:red
-import './ValidationError.css'
+import "./ValidationError.css";
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -9,14 +9,14 @@ class ErrorBoundary extends Component {
       hasError: false
     };
   }
-  
+
   static getDerivedStateFromError(error) {
     return { hasError: true };
   }
 
   render() {
     if (this.state.hasError) {
-      return <h2 className='error'>Error Could not display.</h2>;
+      return <h2 className="error">Error Could not display.</h2>;
     }
     return this.props.children;
   }
