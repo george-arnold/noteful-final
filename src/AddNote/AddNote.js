@@ -12,7 +12,7 @@ class AddNote extends Component {
     this.state = {
       noteName: "",
       noteContent: "",
-      folderId: "b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1"
+      folderid: ""
     };
   }
 
@@ -37,19 +37,19 @@ class AddNote extends Component {
     });
   }
 
-  handleFolderChange(folderId) {
+  handleFolderChange(folderid) {
     this.setState({
-      folderId
+      folderid
     });
   }
 
   handleSubmit = event => {
     event.preventDefault();
-    const { noteName, noteContent, folderId } = this.state;
+    const { noteName, noteContent, folderid } = this.state;
     const newNote = {
       name: noteName,
       content: noteContent,
-      folderId
+      folderid
     };
 
     fetch(`${config.API_ENDPOINT}/notes`, {
@@ -76,7 +76,9 @@ class AddNote extends Component {
 
   render() {
     const isValid =
-      this.state.noteName.length > 0 && this.state.noteContent.length > 0;
+      this.state.noteName.length > 0 &&
+      this.state.noteContent.length > 0 &&
+      this.state.folderid.length > 0;
     const options = this.context.folders.map(folder => (
       <option id={folder.id} key={folder.id} value={folder.id}>
         {" "}
@@ -111,6 +113,8 @@ class AddNote extends Component {
             name="folder"
             onChange={e => this.handleFolderChange(e.target.value)}
           >
+            {" "}
+            <option>--</option>
             {options}
           </select>
         </div>

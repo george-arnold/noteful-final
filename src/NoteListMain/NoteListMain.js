@@ -16,9 +16,9 @@ export default class NoteListMain extends Component {
   static contextType = NoteContext;
 
   render() {
-    const { folderId } = this.props.match.params;
+    const { folderid } = this.props.match.params;
     const { notes = [] } = this.context;
-    const notesForFolder = getNotesForFolder(notes, folderId);
+    const notesForFolder = getNotesForFolder(notes, folderid);
     return (
       <section className="NoteListMain">
         <ErrorBoundary>
