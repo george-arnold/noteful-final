@@ -90,6 +90,7 @@ class App extends Component {
       addNewFolder: this.handleNewFolder,
       addNewNote: this.handleNewNote
     };
+    console.log("value", value);
     return (
       <NoteContext.Provider value={value}>
         <div className="App">

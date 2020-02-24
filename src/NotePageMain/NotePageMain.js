@@ -12,14 +12,18 @@ class NotePageMain extends Component {
   };
   static contextType = NoteContext;
 
-  handleDeleteNote = noteId => {
+  handleDeleteNote = noteid => {
     this.props.history.push(`/`);
   };
 
   render() {
     const { notes = [] } = this.context;
     const { noteid } = this.props.match.params;
+    console.log("noteid", noteid);
+    console.log("notes", notes);
     const note = findNote(notes, noteid) || { content: "" };
+    console.log("note", note);
+
     return (
       <section className="NotePageMain">
         <Note
