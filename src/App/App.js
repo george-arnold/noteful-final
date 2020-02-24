@@ -43,9 +43,11 @@ class App extends Component {
   };
 
   handleNewNote = note => {
+    console.log("first log", this.state.notes);
     this.setState({
       notes: [...this.state.notes, note]
     });
+    console.log("second log", this.state.notes);
   };
 
   handleDeleteNote = noteid => {
