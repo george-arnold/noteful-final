@@ -1,4 +1,8 @@
-.Labels {
-  margin: 20px;
-  color: white;
+
+.AddNote {
+  color: #dedede;
+}
+
+.AddNote h2 {
+  margin-left: 16px;
 }

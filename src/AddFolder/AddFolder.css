@@ -1,7 +1,8 @@
-.label {
-  color: white;
+
+.AddFolder {
+  color: #dedede;
 }
 
-.Submit {
-  margin: 15px;
+.AddFolder h2 {
+  margin-left: 16px;
 }
