@@ -29,7 +29,6 @@ export default class Note extends React.Component {
       })
       .then(() => {
         this.context.deleteNote(noteid);
-        // allow parent to perform extra behaviour
         this.props.onDeleteNote(noteid);
       })
       .catch(error => {
